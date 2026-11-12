@@ -2,7 +2,7 @@
 
 My first data analysis project in Python. I work at a prepaid smart meter company in Bangladesh, so I practised on the kind of data I see at work: customers recharging their prepaid electricity meters.
 
-> **The data is synthetic.** It was made with `src/generate_data.py` to look like real recharge records. It has no real customer information.
+> **The data is synthetic.** It was made with `generate_data.py` to look like real recharge records. It has no real customer information.
 
 ## Questions
 1. How does recharge spending change through the year?
@@ -16,21 +16,16 @@ My first data analysis project in Python. I work at a prepaid smart meter compan
 - **SciPy** for a t-test
 - **Excel** (through pandas + openpyxl) for the summary report
 
-## Folders
-```
-prepaid-meter-recharge-analysis/
-├── data/
-│   ├── raw/meter_recharges_raw.csv          # messy data
-│   └── processed/meter_recharges_clean.csv  # cleaned data
-├── notebooks/
-│   └── recharge_analysis.ipynb              # the analysis
-├── outputs/
-│   ├── figures/                             # charts
-│   └── recharge_analysis_summary.xlsx       # Excel summary
-├── src/
-│   └── generate_data.py                     # makes the dataset
-└── requirements.txt
-```
+## Files
+| File | What it is |
+|---|---|
+| `recharge_analysis.ipynb` | The analysis notebook |
+| `meter_recharges_raw.csv` | Messy synthetic data |
+| `meter_recharges_clean.csv` | Cleaned data |
+| `recharge_analysis_summary.xlsx` | Excel summary |
+| `01_...png` to `05_...png` | Charts |
+| `generate_data.py` | Makes the dataset |
+| `requirements.txt` | Libraries needed |
 
 ## Data cleaning
 | Problem | What I did |
@@ -46,26 +41,26 @@ prepaid-meter-recharge-analysis/
 
 **1. Recharges are seasonal.** Highest in May and lowest in December-January, probably because of fans and ACs in summer.
 
-![Monthly trend](outputs/figures/01_monthly_trend.png)
+![Monthly trend](01_monthly_trend.png)
 
 **2. Mobile wallets are the main channel.** bKash (41%) and Nagad (23%) make up nearly two-thirds of recharges.
 
-![Payment channels](outputs/figures/02_payment_channels.png)
+![Payment channels](02_payment_channels.png)
 
 **3. Urban customers spend more.** Urban residential customers spend about BDT 847 per month, and rural ones spend about BDT 672. The t-test gives p < 0.05, so the difference is significant.
 
-![Urban vs rural](outputs/figures/04_urban_vs_rural.png)
+![Urban vs rural](04_urban_vs_rural.png)
 
 **4. 45 unusual recharges.** I flagged recharges where the price per kWh is more than 50% away from the median. In these cases customers paid a lot but received few units, so they should be checked.
 
-![Flagged recharges](outputs/figures/05_flagged_recharges.png)
+![Flagged recharges](05_flagged_recharges.png)
 
 ## How to run
 ```bash
 git clone https://github.com/Shahriarmazid/prepaid-meter-recharge-analysis.git
 cd prepaid-meter-recharge-analysis
 pip install -r requirements.txt
-jupyter notebook notebooks/recharge_analysis.ipynb
+jupyter notebook recharge_analysis.ipynb
 ```
 
 ## Next steps

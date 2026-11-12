@@ -9,7 +9,7 @@ The data is made a bit "messy" on purpose (duplicates, missing values,
 inconsistent text, mixed date formats, some bad values) so that the
 notebook has something real to clean.
 
-Run:  python src/generate_data.py
+Run:  python generate_data.py
 """
 
 import numpy as np
@@ -109,6 +109,6 @@ df.loc[np.random.choice(df.index, 8, replace=False), "recharge_amount_bdt"] = 0
 df = pd.concat([df, df.sample(85, random_state=1)])  # duplicate rows
 df = df.sample(frac=1, random_state=7).reset_index(drop=True)
 
-out = Path(__file__).resolve().parents[1] / "data" / "raw" / "meter_recharges_raw.csv"
+out = Path(__file__).resolve().parent / "meter_recharges_raw.csv"
 df.to_csv(out, index=False)
 print(f"Saved {len(df):,} rows -> {out}")
